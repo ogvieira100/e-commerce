@@ -1,0 +1,119 @@
+version: '3.8'
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  postgres-ecommerce-volume:
+  rabbitmq-ecommerce-volume:
+  rabbitmq-ecommerce-volume-logs:
+  mongo-ecommerce-volume:
+
+services:
+ 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-ecommerce
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - ecommerce-network
+  postgres:
+    image: postgres:latest
+    container_name: postgres-ecommerce-db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Sistema@2024
+      POSTGRES_DB: db_local
+    ports:
+      - "5432:5432"
+    networks:
+      - ecommerce-network
+    volumes:
+      - postgres-ecommerce-volume:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-ecommerce-container
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - ecommerce-network
+    volumes:
+      - rabbitmq-ecommerce-volume:/var/lib/rabbitmq
+      - rabbitmq-ecommerce-volume-logs:/var/log/rabbitmq    
+  mongo:
+    image: mongo:latest
+    container_name: mongo-ecommerce-db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: Sistema@2024
+    ports:
+      - "27017:27017"
+    networks:
+      - ecommerce-network
+    volumes:
+      - mongo-ecommerce-volume:/data/db    
+  api-products:
+        container_name: ecommerce-api-products
+        build: 
+            context: ../src
+            dockerfile: ./services/ecommerce.ProductsApi/Dockerfile      
+        restart: always  
+        ports:
+            - "5162:5162"  
+        networks:
+          - ecommerce-network                     
+        environment: 
+            ASPNETCORE_ENVIRONMENT: Docker
+            ASPNETCORE_URLS: http://+:5162
+            CUSTOMCONNSTR_DefaultConnection: "Server=postgres;Port=5432;Database=db_local;Username=admin;Password=Sistema@2024;Include Error Detail=true;"
+            AppSettings__DatabaseType: PostgreSql           
+        depends_on:
+            - mongo
+            - pgadmin
+            - postgres
+            - rabbitmq
+  api-carts:
+        container_name: ecommerce-api-carts
+        build: 
+            context: ../src
+            dockerfile: ./services/ecommerce.CartsApi/Dockerfile      
+        restart: always  
+        ports:
+            - "5077:5077" 
+        networks:
+          - ecommerce-network                      
+        environment: 
+            ASPNETCORE_ENVIRONMENT: Docker
+            ASPNETCORE_URLS: http://+:5077
+            CUSTOMCONNSTR_DefaultConnection: "Server=postgres;Port=5432;Database=db_local;Username=admin;Password=Sistema@2024;Include Error Detail=true;"
+            AppSettings__DatabaseType: PostgreSql           
+        depends_on:
+            - mongo
+            - pgadmin
+            - postgres
+            - rabbitmq              
+  front-end:
+    build:
+      context: ../src/front-end
+      dockerfile: Dockerfile
+    container_name: front-end
+    ports:
+      - "8081:80" 
+    networks:
+      - ecommerce-network
+    depends_on:
+      - api-products
+      - api-carts     
