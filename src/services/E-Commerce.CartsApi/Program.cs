@@ -43,11 +43,28 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(opt =>
+    {
+
+        opt.SwaggerEndpoint("/openapi/v1.json", "Products api");
+    });
+    app.UseDeveloperExceptionPage();
+    app.UseCors("Development");
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.MapOpenApi();
+    app.UseSwaggerUI(opt =>
+    {
+
+        opt.SwaggerEndpoint("/openapi/v1.json", "Products api");
+    });
+    app.UseCors("Production");
 }
 
 app.UseHttpsRedirection();

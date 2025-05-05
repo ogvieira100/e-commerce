@@ -1,3 +1,10 @@
+using E_Commerce.AuthApi.Data;
+using E_Commerce.AuthApi.Models;
+using E_Commerce.Core.Data;
+using E_Commerce.Core.Utils;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,12 +13,75 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddDbContext<AuthDBContext>(options =>
+               options.UseNpgsql(
+                   builder.Configuration.GetConnectionString("DefaultConnection")
+               ).EnableSensitiveDataLogging()
+                .UseLazyLoadingProxies()
+           );
+
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.User.RequireUniqueEmail = true;
+
+}).AddErrorDescriber<IdentityMensagensPortugues>()
+  .AddEntityFrameworkStores<AuthDBContext>()
+  .AddDefaultTokenProviders();
+
+DependencyResolver.RegisterDependencies(builder);
+
+builder.Services.AddScoped<IDbContext, AuthDBContext>();
+
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy("Development",
+          builder =>
+              builder
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowAnyOrigin()
+              ); // allow credentials
+
+    options.AddPolicy("Production",
+        builder =>
+            builder
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowAnyOrigin()
+              ); // allow credentials
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(opt =>
+    {
+
+        opt.SwaggerEndpoint("/openapi/v1.json", "Products api");
+    });
+    app.UseDeveloperExceptionPage();
+    app.UseCors("Development");
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.MapOpenApi();
+    app.UseSwaggerUI(opt =>
+    {
+
+        opt.SwaggerEndpoint("/openapi/v1.json", "Products api");
+    });
+    app.UseCors("Production");
 }
 
 app.UseHttpsRedirection();
@@ -19,5 +89,21 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+/*update database*/
+using (var scope = app.Services.CreateScope())
+{
+    using (var appContext = scope.ServiceProvider.GetRequiredService<AuthDBContext>())
+    {
+        try
+        {
+            appContext.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+}
 
 app.Run();
