@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.MessageBus.Models.Integration
 {
-  public  class InsertProductsIntegrationEvent : ProductsIntegrationEvent
+    public class InsertProductsIntegrationEvent : ProductsIntegrationEvent
     {
     }
 }

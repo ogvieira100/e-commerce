@@ -1,6 +1,9 @@
 using E_Commerce.Core.Data;
 using E_Commerce.Core.Utils;
+using E_Commerce.ProductsApi.Application.CreateProducts;
+using E_Commerce.ProductsApi.Application.UpdateProducts;
 using E_Commerce.ProductsApi.Data.Context;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -12,6 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+
+/*validations for fluent Api*/
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProductsCommand>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductsCommand>();
 
 
 builder.Services.AddMediatR(cfg =>

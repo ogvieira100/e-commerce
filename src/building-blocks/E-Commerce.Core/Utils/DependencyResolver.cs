@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Core.Data;
+using E_Commerce.Core.Validation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace E_Commerce.Core.Utils
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped(typeof(IRepositoryConsult<>), typeof(RepositoryConsult<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
     }
 }
