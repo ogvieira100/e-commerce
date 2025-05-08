@@ -35,7 +35,7 @@ namespace E_Commerce.CartsApi.Mapping
                 .IsRequired()
                 .HasPrecision(20, 10);
 
-            builder.ToTable("Product");
+            builder.ToTable("ProductsxCarts");
         }
     }
 }

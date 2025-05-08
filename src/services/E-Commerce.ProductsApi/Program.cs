@@ -39,7 +39,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 #endregion
 
 DependencyResolver.RegisterDependencies(builder);
-
 builder.Services.AddScoped<IDbContext, AppDbContext>();
 
 builder.Services.AddCors(options =>

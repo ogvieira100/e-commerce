@@ -59,13 +59,13 @@ namespace E_Commerce.ProductsApi.Application
                 throw new InvalidOperationException($"Produto com o nome {request.Name} já existe");
 
 
-            var product = (await _productsRepository.RepositoryConsult.SearchAsync(x => x.Id == command.Id, cancellationToken))?.FirstOrDefault();
+            var product = (await _productsRepository.RepositoryConsult.SearchAsync(x => x.Id == request.Id, cancellationToken))?.FirstOrDefault();
             if (product == null)
                 throw new InvalidOperationException($"Produto não encontrado!");
 
             product.Description = request.Description;
             product.Price = request.Price ?? 0;
-            product.Title = request.Name;
+            product.Name = request.Name;
             product.Image = request.Image;
           
             await _productsRepository.UnitOfWork.CommitAsync();

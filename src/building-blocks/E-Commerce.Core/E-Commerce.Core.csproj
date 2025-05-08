@@ -25,4 +25,9 @@
     <Folder Include="Domain\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\E-Commerce.MessageBus\E-Commerce.MessageBus.csproj" />
+  </ItemGroup>
+
 </Project>

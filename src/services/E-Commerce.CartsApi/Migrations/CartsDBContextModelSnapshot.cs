@@ -179,13 +179,13 @@ namespace E_Commerce.CartsApi.Migrations
                         .HasColumnType("numeric(20,10)")
                         .HasColumnName("Price");
 
-                    b.Property<Guid>("ProductIdIntegrated")
-                        .HasColumnType("uuid")
+                    b.Property<long>("ProductIdIntegrated")
+                        .HasColumnType("bigint")
                         .HasColumnName("ProductIdIntegrated");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("ProductsxCarts", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce.CartsApi.Models.CartsItens", b =>

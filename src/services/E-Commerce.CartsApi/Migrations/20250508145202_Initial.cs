@@ -34,12 +34,12 @@ namespace E_Commerce.CartsApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "ProductsxCarts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductIdIntegrated = table.Column<Guid>(type: "uuid", nullable: false),
+                    ProductIdIntegrated = table.Column<long>(type: "bigint", nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Image = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
                     Description = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
@@ -54,7 +54,7 @@ namespace E_Commerce.CartsApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_ProductsxCarts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,9 +87,9 @@ namespace E_Commerce.CartsApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartsItens_Product_ProductId",
+                        name: "FK_CartsItens_ProductsxCarts_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Product",
+                        principalTable: "ProductsxCarts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -115,7 +115,7 @@ namespace E_Commerce.CartsApi.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "ProductsxCarts");
         }
     }
 }

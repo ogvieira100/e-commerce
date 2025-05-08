@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace E_Commerce.CartsApi.Migrations
 {
     [DbContext(typeof(CartsDBContext))]
-    [Migration("20250503172848_Initial")]
+    [Migration("20250508145202_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -182,13 +182,13 @@ namespace E_Commerce.CartsApi.Migrations
                         .HasColumnType("numeric(20,10)")
                         .HasColumnName("Price");
 
-                    b.Property<Guid>("ProductIdIntegrated")
-                        .HasColumnType("uuid")
+                    b.Property<long>("ProductIdIntegrated")
+                        .HasColumnType("bigint")
                         .HasColumnName("ProductIdIntegrated");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("ProductsxCarts", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce.CartsApi.Models.CartsItens", b =>

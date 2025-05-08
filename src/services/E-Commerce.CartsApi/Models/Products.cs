@@ -4,7 +4,7 @@ namespace E_Commerce.CartsApi.Models
 {
     public class Products : BaseEntity
     {
-        public Guid ProductIdIntegrated { get; set; }
+        public long ProductIdIntegrated { get; set; }
 
         public string Name { get; set; } = default!;
 

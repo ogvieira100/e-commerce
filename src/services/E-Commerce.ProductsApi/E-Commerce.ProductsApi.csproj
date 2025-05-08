@@ -27,4 +27,8 @@
     <ProjectReference Include="..\..\building-blocks\E-Commerce.MessageBus\E-Commerce.MessageBus.csproj" />
     <ProjectReference Include="..\E-Commerce.CartsApi\E-Commerce.CartsApi.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Response\" />
+  </ItemGroup>
 </Project>
