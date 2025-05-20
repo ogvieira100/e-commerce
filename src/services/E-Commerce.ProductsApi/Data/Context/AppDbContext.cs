@@ -1,7 +1,8 @@
-﻿using E_Commerce.Core.Data;
+﻿
 using E_Commerce.ProductsApi.Mapping;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using Util.Data;
 
 namespace E_Commerce.ProductsApi.Data.Context
 {

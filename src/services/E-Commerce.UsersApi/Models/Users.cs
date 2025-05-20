@@ -1,5 +1,5 @@
-﻿using DeveloperEvaluation.Core.Domain;
-using E_Commerce.UsersApi.Mapping;
+﻿using E_Commerce.UsersApi.Mapping;
+using Util.Domain;
 
 namespace E_Commerce.UsersApi.Models
 {

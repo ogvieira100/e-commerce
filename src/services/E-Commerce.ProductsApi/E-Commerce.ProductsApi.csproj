@@ -20,11 +20,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Util-net9.0" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\building-blocks\E-Commerce.Core\E-Commerce.Core.csproj" />
-    <ProjectReference Include="..\..\building-blocks\E-Commerce.MessageBus\E-Commerce.MessageBus.csproj" />
     <ProjectReference Include="..\E-Commerce.CartsApi\E-Commerce.CartsApi.csproj" />
   </ItemGroup>
 

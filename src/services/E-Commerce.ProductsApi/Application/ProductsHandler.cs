@@ -1,12 +1,12 @@
 ﻿using E_Commerce.CartsApi.Models;
-using E_Commerce.Core.Data;
-using E_Commerce.MessageBus.Interface;
-using E_Commerce.MessageBus.Models.Integration;
 using E_Commerce.ProductsApi.Application.CreateProducts;
 using E_Commerce.ProductsApi.Application.DeleteProducts;
 using E_Commerce.ProductsApi.Application.UpdateProducts;
 using Mapster;
 using MediatR;
+using Util.Data;
+using Util.MessageBus.Interface;
+using Util.MessageBus.Models.Integration;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace E_Commerce.ProductsApi.Application

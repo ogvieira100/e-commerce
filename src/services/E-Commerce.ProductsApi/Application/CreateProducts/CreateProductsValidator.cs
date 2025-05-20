@@ -1,5 +1,5 @@
-﻿using E_Commerce.Core.Validation;
-using FluentValidation;
+﻿using FluentValidation;
+using Util.Validation;
 
 namespace E_Commerce.ProductsApi.Application.CreateProducts
 {

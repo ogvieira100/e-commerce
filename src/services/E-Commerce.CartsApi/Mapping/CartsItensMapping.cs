@@ -1,7 +1,7 @@
 ﻿using E_Commerce.CartsApi.Models;
-using E_Commerce.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Util.Data;
 
 namespace E_Commerce.CartsApi.Mapping
 {
@@ -25,9 +25,6 @@ namespace E_Commerce.CartsApi.Mapping
                .HasColumnName("UnitPrices")
                .IsRequired();
 
-            builder.Property(x => x.DateAdd)
-              .HasColumnName("DateAdd")
-              .IsRequired();
 
             builder.Property(x => x.DateUpdated)
             .HasColumnName("DateUpdated")

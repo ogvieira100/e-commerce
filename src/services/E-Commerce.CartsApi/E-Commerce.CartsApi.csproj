@@ -18,15 +18,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Util-net9.0" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Application\CreateProducts\" />
+    <Folder Include="Application\DeleteProducts\" />
+    <Folder Include="Application\UpdateProducts\" />
     <Folder Include="Models\Response\" />
     <Folder Include="Models\Request\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\building-blocks\E-Commerce.Core\E-Commerce.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,8 @@
 ﻿using DeveloperEvaluation.MessageBus.Models;
-using E_Commerce.MessageBus.Interface;
-using E_Commerce.MessageBus.Models.Integration;
+
 using MediatR;
+using Util.MessageBus.Interface;
+using Util.MessageBus.Models.Integration;
 
 namespace E_Commerce.ProductsApi.Application
 {

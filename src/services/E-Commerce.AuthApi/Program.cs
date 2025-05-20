@@ -1,9 +1,10 @@
 using E_Commerce.AuthApi.Data;
 using E_Commerce.AuthApi.Models;
-using E_Commerce.Core.Data;
-using E_Commerce.Core.Utils;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Util.Data;
+using Util.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 

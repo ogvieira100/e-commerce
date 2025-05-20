@@ -1,6 +1,4 @@
 ﻿using E_Commerce.CartsApi.Models;
-using E_Commerce.Core.Data;
-using E_Commerce.Core.Web;
 using E_Commerce.ProductsApi.Application.CreateProducts;
 using E_Commerce.ProductsApi.Application.DeleteProducts;
 using E_Commerce.ProductsApi.Application.Queries;
@@ -9,6 +7,7 @@ using E_Commerce.ProductsApi.Models;
 using E_Commerce.ProductsApi.Models.Request;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Util.Web;
 
 namespace E_Commerce.ProductsApi.Controllers
 {
@@ -103,7 +102,6 @@ namespace E_Commerce.ProductsApi.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost]
-       
         public async Task<IActionResult> CreateProducts([FromBody] CreateProductsCommand  createProductsCommand,
             CancellationToken cancellationToken = default)
         {

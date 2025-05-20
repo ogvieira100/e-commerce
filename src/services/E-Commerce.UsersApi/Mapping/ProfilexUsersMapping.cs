@@ -1,7 +1,7 @@
-﻿using E_Commerce.Core.Data;
-using E_Commerce.UsersApi.Models;
+﻿using E_Commerce.UsersApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Util.Data;
 
 namespace E_Commerce.UsersApi.Mapping
 {

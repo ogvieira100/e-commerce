@@ -1,9 +1,9 @@
-﻿using DeveloperEvaluation.Core.Domain;
-using E_Commerce.CartsApi.Models;
-using E_Commerce.Core.Data;
+﻿using E_Commerce.CartsApi.Models;
 using E_Commerce.ProductsApi.Models.Dto;
 using E_Commerce.ProductsApi.Models.Request;
 using Mapster;
+using Util.Data;
+using Util.Domain;
 
 namespace E_Commerce.ProductsApi.Application.Queries
 {

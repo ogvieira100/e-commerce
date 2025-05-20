@@ -1,8 +1,9 @@
-﻿using E_Commerce.Core.Data;
+﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using Util.Data;
 
 namespace E_Commerce.AuthApi.Data
 {

@@ -1,7 +1,7 @@
 ﻿using E_Commerce.CartsApi.Models;
-using E_Commerce.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Util.Data;
 
 namespace E_Commerce.CartsApi.Mapping
 {

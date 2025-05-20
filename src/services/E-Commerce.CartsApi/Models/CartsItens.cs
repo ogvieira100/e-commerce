@@ -1,4 +1,6 @@
-﻿using DeveloperEvaluation.Core.Domain;
+﻿
+
+using Util.Domain;
 
 namespace E_Commerce.CartsApi.Models
 {
@@ -11,12 +13,9 @@ namespace E_Commerce.CartsApi.Models
         public virtual Products Product { get; set; }
         public long CartsId { get; set; }
         public virtual Carts Carts { get; set; }
-        public DateTime DateAdd { get; set; }
-        public DateTime? DateUpdated { get; set; }
-
         public CartsItens()
         {
-            DateAdd = DateTime.Now;
+            
         }
     }
 }

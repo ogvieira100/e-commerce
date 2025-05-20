@@ -1,4 +1,4 @@
-﻿using DeveloperEvaluation.Core.Domain;
+﻿using Util.Domain;
 
 namespace E_Commerce.UsersApi.Models
 {

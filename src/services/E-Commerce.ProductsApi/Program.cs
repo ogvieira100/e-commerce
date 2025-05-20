@@ -1,5 +1,3 @@
-using E_Commerce.Core.Data;
-using E_Commerce.Core.Utils;
 using E_Commerce.ProductsApi.Application.CreateProducts;
 using E_Commerce.ProductsApi.Application.UpdateProducts;
 using E_Commerce.ProductsApi.Data.Context;
@@ -7,6 +5,8 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
+using Util.Data;
+using Util.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
